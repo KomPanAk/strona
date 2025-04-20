@@ -1,74 +1,898 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Restauracja KomPanEria</title>
+    <title>KomPanEria - Gourmet Sandwiches</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        :root {
+            --primary-color: #1e3a8a;
+            --accent-color: #f59e0b;
+            --light-color: #f3f4f6;
+            --dark-color: #1f2937;
+        }
+        
+        * {
             margin: 0;
             padding: 0;
-            text-align: center;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
         header {
-            background-color: #8B0000;
+            background-color: var(--primary-color);
             color: white;
-            padding: 20px;
-        }
-        nav {
-            background-color: #333;
-            padding: 10px;
-        }
-        nav a {
-            color: white;
-            margin: 0 15px;
-            text-decoration: none;
-        }
-        section {
-            padding: 20px;
-        }
-        footer {
-            background-color: #8B0000;
-            color: white;
-            padding: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             position: relative;
-            width: 100%;
+            overflow: hidden;
+        }
+        
+        .header-content {
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .logo {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: white;
+            letter-spacing: 2px;
+        }
+        
+        .logo span {
+            color: var(--accent-color);
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+        
+        /* Navigation */
+        nav {
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+        }
+        
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+        
+        .nav-links a:hover {
+            background-color: var(--accent-color);
+            color: var(--dark-color);
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 500px;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/api/placeholder/1200/600') center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+        
+        .hero-content h2 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-content p {
+            font-size: 1.5rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--dark-color);
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+            background-color: #fbbf24;
+        }
+        
+        /* About Section */
+        .about {
+            padding: 5rem 0;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--primary-color);
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
             bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background-color: var(--accent-color);
+            border-radius: 2px;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark-color);
+        }
+        
+        .about-text p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            color: #4b5563;
+        }
+        
+        .about-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Menu Section */
+        .menu {
+            padding: 5rem 0;
+            background-color: #f9fafb;
+        }
+        
+        .menu-categories {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 3rem;
+            gap: 1rem;
+        }
+        
+        .menu-category {
+            padding: 0.7rem 1.5rem;
+            background-color: white;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        .menu-category.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .menu-category:hover {
+            background-color: #e5e7eb;
+        }
+        
+        .menu-category.active:hover {
+            background-color: var(--primary-color);
+        }
+        
+        .menu-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .menu-item {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .menu-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        }
+        
+        .menu-item-image {
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .menu-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .menu-item:hover .menu-item-image img {
+            transform: scale(1.05);
+        }
+        
+        .menu-item-content {
+            padding: 1.5rem;
+        }
+        
+        .menu-item-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark-color);
+        }
+        
+        .menu-item-description {
+            color: #6b7280;
+            margin-bottom: 1rem;
+        }
+        
+        .menu-item-price {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .menu-item-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background-color: var(--accent-color);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: 1rem;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 5rem 0;
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .testimonials .section-title {
+            color: white;
+        }
+        
+        .testimonials-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .testimonial {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        .testimonial::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            font-size: 6rem;
+            color: rgba(255, 255, 255, 0.2);
+            font-family: serif;
+            line-height: 1;
+        }
+        
+        .testimonial-text {
+            font-size: 1.1rem;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .testimonial-author-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 1rem;
+        }
+        
+        .testimonial-author-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .testimonial-author-info h4 {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+        
+        .testimonial-author-info p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 5rem 0;
+            background-color: white;
+        }
+        
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+        
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark-color);
+        }
+        
+        .contact-details {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+        
+        .contact-details li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        .contact-icon {
+            margin-right: 1rem;
+            width: 24px;
+            height: 24px;
+            color: var(--primary-color);
+        }
+        
+        .contact-hours {
+            margin-bottom: 2rem;
+        }
+        
+        .contact-hours h4 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+        
+        .hours-table {
+            width: 100%;
+        }
+        
+        .hours-table tr {
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .hours-table td {
+            padding: 0.75rem 0;
+        }
+        
+        .hours-table td:last-child {
+            text-align: right;
+            font-weight: 500;
+        }
+        
+        .contact-form {
+            background-color: #f9fafb;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+        }
+        
+        .contact-form h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark-color);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--dark-color);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            border: 1px solid #d1d5db;
+            border-radius: 5px;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .submit-button {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .submit-button:hover {
+            background-color: #1e40af;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: white;
+            letter-spacing: 2px;
+        }
+        
+        .footer-logo span {
+            color: var(--accent-color);
+        }
+        
+        .footer-about p {
+            margin-bottom: 1.5rem;
+            color: #d1d5db;
+        }
+        
+        .social-links {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+        
+        .footer-heading {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-links a {
+            color: #d1d5db;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #9ca3af;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .hero-content h2 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-content p {
+                font-size: 1.2rem;
+            }
+            
+            .menu-items {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Header -->
     <header>
-        <h1>Restauracja KomPanEria</h1>
-        <p><em><bold>Wszystko co chcesz, znajdziesz tu</em></bold></p>
+        <div class="container">
+            <div class="header-content">
+                <h1 class="logo">KomPan<span>Eria</span></h1>
+                <p class="tagline">Artisanal Sandwiches & Refreshments</p>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#menu">Menu</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
-    <nav>
-        <a href="#menu">Menu</a>
-        <a href="#o-nas">O nas</a>
-        <a href="#kontakt">Kontakt</a>
-    </nav>
-    <section id="menu">
-        <h2>Nasze Menu</h2>
-        <p>Pyszne dania przygotowane ze świeżych składników.</p>
-        <ul>
-            <li>Kanapka z serem<br>
-                <img src="A_delicious_grilled_cheese_sandwich_on_a_wooden_pl_converted.png" alt="Kanapka z serem" width="300">
-            </li>
-        </ul>
-    </section>
-    <section id="o-nas">
-        <h2>O nas</h2>
-        <p>Nasza restauracja działa od 10 lat, serwując tradycyjne i nowoczesne dania.</p>
-    </section>
-    <section id="kontakt">
-        <h2>Kontakt</h2>
-        <p>Adres: ul. Grunwaldzka 26, Łódź</p>
-        <p>Telefon: +48 788 228 186</p>
-    </section>
-    <footer>
-        <p>&copy; 2025 Piotr Mikołajczyk. Wszelkie prawa zastrzeżone.</p>
-    </footer>
-</body>
-</html>
 
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Sandwich Perfection</h2>
+                <p>Experience the art of sandwich-making at KomPanEria, where traditional recipes meet innovative flavors.</p>
+                <a href="#menu" class="cta-button">View Our Menu</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">Our Story</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Tradition & Innovation</h3>
+                    <p>At KomPanEria, we believe that the humble sandwich deserves to be elevated to an art form. Founded in 2018, our restaurant combines time-honored sandwich-making traditions with contemporary culinary creativity.</p>
+                    <p>Each ingredient is carefully selected from local suppliers to ensure freshness and quality. Our breads are baked in-house daily, providing the perfect foundation for our delicious creations.</p>
+                    <p>Whether you're looking for a quick lunch, a leisurely meal, or catering for an event, KomPanEria offers an unforgettable sandwich experience that will keep you coming back for more.</p>
+                </div>
+                <div class="about-image">
+                    <img src="/api/placeholder/600/400" alt="KomPanEria Restaurant Interior">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="menu">
+        <div class="container">
+            <h2 class="section-title">Our Menu</h2>
+            <div class="menu-categories">
+                <div class="menu-category active">All</div>
+                <div class="menu-category">Sandwiches</div>
+                <div class="menu-category">Beverages</div>
+                <div class="menu-category">Sides</div>
+            </div>
+            <div class="menu-items">
+                <!-- Kanapka -->
+                <div class="menu-item">
+                    <div class="menu-item-image">
+                        <img src="/api/placeholder/400/300" alt="Classic Sandwich">
+                    </div>
+                    <div class="menu-item-content">
+                        <h3 class="menu-item-title">Kanapka</h3>
+                        <p class="menu-item-description">Our signature sandwich with fresh vegetables, premium ham, and our special herb sauce on freshly baked bread.</p>
+                        <div>
+                            <span class="menu-item-price">$8.99</span>
+                            <span class="menu-item-badge">Best Seller</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Kanapka z serem -->
+                <div class="menu-item">
+                    <div class="menu-item-image">
+                        <img src="/api/placeholder/400/300" alt="Cheese Sandwich">
+                    </div>
+                    <div class="menu-item-content">
+                        <h3 class="menu-item-title">Kanapka z serem</h3>
+                        <p class="menu-item-description">A delightful combination of three premium cheeses, caramelized onions, and tomatoes on our artisanal sourdough bread.</p>
+                        <div>
+                            <span class="menu-item-price">$9.99</span>
+                            <span class="menu-item-badge">Vegetarian</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Coca-Cola -->
+                <div class="menu-item">
+                    <div class="menu-item-image">
+                        <img src="/api/placeholder/400/300" alt="Coca-Cola">
+                    </div>
+                    <div class="menu-item-content">
+                        <h3 class="menu-item-title">Coca-Cola</h3>
+                        <p class="menu-item-description">Ice-cold Coca-Cola served in a chilled glass with a slice of lemon. The perfect companion to any sandwich.</p>
+                        <div>
+                            <span class="menu-item-price">$2.99</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Additional Menu Items -->
+                <div class="menu-item">
+                    <div class="menu-item-image">
+                        <img src="/api/placeholder/400/300" alt="Specialty Sandwich">
+                    </div>
+                    <div class="menu-item-content">
+                        <h3 class="menu-item-title">Chef's Special</h3>
+                        <p class="menu-item-description">A weekly rotating specialty sandwich crafted by our head chef using seasonal ingredients and inspired flavors.</p>
+                        <div>
+                            <span class="menu-item-price">$12.99</span>
+                            <span class="menu-item-badge">Limited</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="menu-item-image">
+                        <img src="/api/placeholder/400/300" alt="Fresh Salad">
+                    </div>
+                    <div class="menu-item-content">
+                        <h3 class="menu-item-title">Garden Salad</h3>
+                        <p class="menu-item-description">Fresh mixed greens, cherry tomatoes, cucumber, and house-made vinaigrette. Add grilled chicken for an additional fee.</p>
+                        <div>
+                            <span class="menu-item-price">$7.99</span>
+                            <span class="menu-item-badge">Healthy</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="menu-item-image">
+                        <img src="/api/placeholder/400/300" alt="Dessert">
+                    </div>
+                    <div class="menu-item-content">
+                        <h3 class="menu-item-title">Sweet Delight</h3>
+                        <p class="menu-item-description">Our signature dessert sandwich with Nutella, strawberries, and a touch of mint on brioche bread.</p>
+                        <div>
+                            <span class="menu-item-price">$6.99</span>
+                            <span class="menu-item-badge">Sweet</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <h2 class="section-title">What Our Customers Say</h2>
+            <div class="testimonials-container">
+                <div class="testimonial">
+                    <p class="testimonial-text">KomPanEria has completely changed how I think about sandwiches. Every bite is a perfect balance of flavors and textures. Their Kanapka z serem is an absolute masterpiece!</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-author-image">
+                            <img src="/api/placeholder/100/100" alt="Customer">
+                        </div>
+                        <div class="testimonial-author-info">
+                            <h4>Maria K.</h4>
+                            <p>Regular Customer</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial">
+                    <p class="testimonial-text">I've been coming here for lunch almost every day since they opened. The quality is consistently excellent, and the staff always remembers my order. It's like a second home!</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-author-image">
+                            <img src="/api/placeholder/100/100" alt="Customer">
+                        </div>
+                        <div class="testimonial-author-info">
+                            <h4>Thomas L.</h4>
+                            <p>Local Food Blogger</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Visit Us</h3>
+                    <ul class="contact-details">
+                        <li>
+                            <span class="contact-icon">📍</span>
+                            <span>123 Sandwich Street, Foodie District, City</span>
+                        </li>
+                        <li>
+                            <span class="contact-icon">📞</span>
+                            <span>+1 234 567 8900</span>
+                        </li>
+                        <li>
+                            <span class="contact-icon">✉️</span>
+                            <span>info@kompaneria.com</span>
+                        </li>
+                    </ul>
+                    
+                    <div class="contact-hours">
+                        <h4>Opening Hours</h4>
+                        <table class="hours-table">
+                            <tr>
+                                <td>Monday - Friday</td>
+                                <td>7:00 AM - 9:00 PM</td>
+                            </tr>
+                            <tr>
+                                <td>Saturday</td>
+                                <td>8:00 AM - 10:00 PM</td>
+                            </tr>
+                            <tr>
+                                <td>Sunday</td>
+                                <td>9:00 AM - 8:00 PM</td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <div class="map">
+                        <img src="/api/placeholder/500/300" alt="Restaurant Location Map">
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <h3>Send Us a Message</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="name" class="form-label">Your Name</label>
+                            <input type="text" id="name" class="form-control" placeholder="Enter your name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" id="email" class="form-control" placeholder="Enter your email">
+                        </div>
+                        <div class="form-group">
+                            <label for="subject" class="form-label">Subject</label>
+                            <input type="text" id="subject" class="form-control" placeholder="What is this regarding?">
+                        </div>
+                        <div class="form-group">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea id="message" class="form-control" placeholder="Type your message here..."></textarea>
+                        </div>
+                        <button type="submit" class="submit-button">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <h2 class="footer-logo">KomPan<span>Eria</span></h2>
+                    <p>Elevating the art of sandwich making with premium ingredients, artisanal breads, and innovative flavor combinations.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">f</a>
+                        <a href="#" class="social-link">in</a>
+                        <a href="#" class="social-link">ig</a>
+                        <a href="#" class="social-link">tw</a>
+                    </div>
+                </div>
+                
+                <div class="footer-links-column">
+                    <h3 class="footer-heading">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href
